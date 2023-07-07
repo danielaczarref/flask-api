@@ -2,7 +2,9 @@ import uuid
 from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+
 from db import business
+from schemas import BusinessSchema
 
 blp = Blueprint("business", __name__, description="Database business registred")
 
@@ -12,13 +14,9 @@ class BusinessList(MethodView):
     def get(self):
         return {"business": list(business.values())}
     
-    def post(self):
-        business_data = request.get_json()
-        if "businessName" not in business_data:
-            abort(
-                400,
-                message="Bad request. Ensure 'businessName' is included in the JSON payload."
-            )
+    @blp.arguments(BusinessSchema)
+    def post(self, business_data):
+
         for item in business_data.values():
             if business_data["businessName"] == item["businessName"]:
                 abort(400, message="Business name provided already exists.")
