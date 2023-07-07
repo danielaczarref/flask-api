@@ -11,10 +11,12 @@ blp = Blueprint("business", __name__, description="Database business registred")
 
 @blp.route("/business")
 class BusinessList(MethodView):
+    @blp.response(200, BusinessSchema(many=True))
     def get(self):
         return {"business": list(business.values())}
     
     @blp.arguments(BusinessSchema)
+    @blp.response(200, BusinessSchema)
     def post(self, business_data):
 
         for item in business_data.values():
