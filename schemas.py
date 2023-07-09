@@ -1,15 +1,19 @@
 from marshmallow import Schema, fields
 
 class BusinessSchema(Schema):
-    id: fields.Str(dump_only=True)
-    businessName: fields.Str(required=True)
-    phone: fields.Str(required=True)
-    address: fields.Str(required=True)
-    initialDate: fields.DateTime(required=True)
-    declaredBilling: fields.Str(required=True)
-    bankData: fields.List(fields.Nested(lambda: BankData()))
+    id = fields.Int(dump_only=True)
+    businessName = fields.Str(required=True)
+    phone = fields.Str(required=True)
+    address = fields.Str(required=True)
+    registrationDate = fields.Date(required=True)
+    billing = fields.Str(required=True)
+    bankAccs = fields.List(fields.Nested(lambda: BankData()))
+
 
 class BankData(Schema):
-    agency = fields.Number(required=True)
-    account = fields.Number(required=True)
+    id = fields.Int(dump_only=True)
+    acc = fields.Int(required=True)
+    agency = fields.Int(required=True)
     bank = fields.Str(required=True)
+    business_id = fields.Int(required=True)
+
