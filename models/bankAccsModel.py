@@ -9,12 +9,12 @@ class BankAccsModel(Base):
     acc = Column(Integer, nullable=False)
     agency = Column(Integer, nullable=False)
     bank = Column(String(100), nullable=False)
-    business_id = mapped_column(ForeignKey("business.id"))
-    business = relationship("BusinessModel", back_populates="bankAccs")
+    company_id = mapped_column(ForeignKey("company.id"))
+    company = relationship("CompanyModel", back_populates="bankAccs")
     
-    def __init__(self, acc, agency, bank, business_id):
+    def __init__(self, acc, agency, bank, company_id):
         self.acc = acc
         self.agency = agency
         self.bank = bank
-        self.business_id = business_id
+        self.company_id = company_id
 

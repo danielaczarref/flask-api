@@ -1,8 +1,8 @@
 from marshmallow import Schema, fields
 
-class BusinessSchema(Schema):
+class CompanySchema(Schema):
     id = fields.Int(dump_only=True)
-    businessName = fields.Str(required=True)
+    companyName = fields.Str(required=True)
     phone = fields.Str(required=True)
     address = fields.Str(required=True)
     registrationDate = fields.Date(required=True)
@@ -15,5 +15,5 @@ class BankData(Schema):
     acc = fields.Int(required=True)
     agency = fields.Int(required=True)
     bank = fields.Str(required=True)
-    business_id = fields.Int(required=True)
+    company_id = fields.Int(required=True)
 
