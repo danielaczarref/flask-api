@@ -7,10 +7,10 @@ class CompanySchema(Schema):
     address = fields.Str(required=True)
     registrationDate = fields.Date(required=True)
     billing = fields.Str(required=True)
-    bankAccs = fields.List(fields.Nested(lambda: BankData()))
+    bankAccs = fields.List(fields.Nested(lambda: BankAccSchema()))
 
 
-class BankData(Schema):
+class BankAccSchema(Schema):
     id = fields.Int(dump_only=True)
     acc = fields.Int(required=True)
     agency = fields.Int(required=True)

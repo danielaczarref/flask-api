@@ -1,8 +1,7 @@
 from db import session
-from models.companyModel import CompanyModel
+from models.CompanyModel import CompanyModel
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_smorest import abort
-import json
 
 class CompanyService():
     def getCompanyList(self):
