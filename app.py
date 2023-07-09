@@ -1,7 +1,9 @@
-from flask import Flask, request
+from flask import Flask
 from flask_smorest import Api
-
-from resources.business import blp as BusinessBlueprint
+# from resources.business import blp as BusinessBlueprint
+from controller.business import blp as BusinessBlueprint
+from controller.bankAccs import blp as BankAccsBlueprint
+import db
 
 app = Flask(__name__)
 
@@ -15,3 +17,8 @@ app.config["OPENAPI_SWAGGER_UI_URL"]    = "https://cdn.jsdelivr.net/npm/swagger-
 
 api = Api(app)
 api.register_blueprint(BusinessBlueprint)
+api.register_blueprint(BankAccsBlueprint)
+
+db.Base.metadata.create_all(db.engine)
+db.session = db.Session()
+db.conn = db.engine.connect()
