@@ -43,7 +43,7 @@ class CompanyService():
             newCompany.phone            = company_data["phone"]
             newCompany.registrationDate = company_data["registrationDate"]
         else:
-            newCompany = CompanyModel(id, **company_data)
+            newCompany                  = CompanyModel(id, **company_data)
 
         session.add(newCompany)
         session.commit()

@@ -23,3 +23,8 @@ class BankAccSchema(Schema):
     bank                = fields.Str(required=True)
     company_id          = fields.Int(required=True)
 
+
+class BankAccUpdateSchema(Schema):
+    acc                 = fields.Int(required=True)
+    agency              = fields.Int(required=True)
+    bank                = fields.Str(required=True)
