@@ -21,5 +21,5 @@ class CompanyTest(TestCase):
                          "The address of the company after creation is not equal to the constructor argument.")
         self.assertEqual(company.registrationDate, "2023-07-08",
                          "The registration date of the company after creation is not equal to the constructor argument.")
-        self.assertEqual(company.billing, "10000",
+        self.assertEqual(company.billing, 10000,
                          "The billing of the company after creation is not equal to the constructor argument.")

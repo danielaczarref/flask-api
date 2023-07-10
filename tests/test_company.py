@@ -7,7 +7,7 @@ def test_get_company(client, created_company_id):
     assert response.json == {
         "address": "Test Address",
         "bankAccs": [],
-        "billing": "10000",
+        "billing": 10000,
         "companyName": "Test Company",
         "id": 1,
         "phone": "(98) 3256-9823",
@@ -19,7 +19,7 @@ def test_create_company(client):
     response = client.post(
         "/company",
         json={
-            "billing": "200000",
+            "billing": 200000,
             "companyName": "Test Company",
             "bankAccs": [],
             "registrationDate": "2002-01-10",

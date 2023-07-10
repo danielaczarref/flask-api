@@ -6,7 +6,7 @@ class CompanySchema(Schema):
     phone               = fields.Str(required=True)
     address             = fields.Str(required=True)
     registrationDate    = fields.Date(required=True)
-    billing             = fields.Str(required=True)
+    billing             = fields.Float(required=True)
     bankAccs            = fields.List(fields.Nested(lambda: BankAccSchema()))
 
 class CompanyUpdateSchema(Schema):
@@ -14,7 +14,7 @@ class CompanyUpdateSchema(Schema):
     phone               = fields.Str(required=True)
     address             = fields.Str(required=True)
     registrationDate    = fields.Date(required=True)
-    billing             = fields.Str(required=True)
+    billing             = fields.Float(required=True)
 
 class BankAccSchema(Schema):
     id                  = fields.Int(dump_only=True)
