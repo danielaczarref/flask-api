@@ -20,4 +20,3 @@ api.register_blueprint(BankAccsBlueprint)
 
 db.Base.metadata.create_all(db.engine)
 db.session = db.Session()
-db.conn = db.engine.connect()

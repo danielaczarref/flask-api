@@ -11,9 +11,8 @@ url = URL.create(
     password='startrek'
 )
 
-engine = create_engine(url)
-Base = declarative_base()
-conn = engine.connect()
+engine  = create_engine(url)
+Base    = declarative_base()
 
 # Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
