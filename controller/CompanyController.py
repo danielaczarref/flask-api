@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
 
-from schemas import CompanySchema
+from schemas import CompanySchema,CompanyUpdateSchema
 from service.CompanyService import CompanyService
 
 blp = Blueprint("Company", "company", description="Operations on companies")
@@ -27,3 +27,9 @@ class Company(MethodView):
 
     def delete(self, company_id):
         return CompanyService.deleteCompany(self, id=company_id)
+
+    @blp.arguments(CompanyUpdateSchema)
+    @blp.response(201, CompanySchema)
+    def put(self, company_data, company_id):
+        return CompanyService.updateCompany(self, company_data, id=company_id)
+

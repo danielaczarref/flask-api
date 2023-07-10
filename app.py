@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_smorest import Api
 from controller.CompanyController import blp as CompanyBlueprint
-from controller.bankAccs import blp as BankAccsBlueprint
+from controller.BankAccsController import blp as BankAccsBlueprint
 import db
 
 app = Flask(__name__)
@@ -20,4 +20,3 @@ api.register_blueprint(BankAccsBlueprint)
 
 db.Base.metadata.create_all(db.engine)
 db.session = db.Session()
-db.conn = db.engine.connect()
