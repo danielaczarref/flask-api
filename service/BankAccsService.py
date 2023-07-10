@@ -26,7 +26,6 @@ class BankAccsService():
     
     def getBankAccById(self, company_id, id):
         bankAccsData = session.query(BankAccsModel).filter(BankAccsModel.company_id == company_id).filter(BankAccsModel.id == id).one()
-        print(bankAccsData)
         return bankAccsData
     
     def deleteBankAcc(self, company_id, id):
