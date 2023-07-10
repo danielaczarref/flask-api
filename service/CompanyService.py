@@ -1,7 +1,8 @@
 from db import session
-from models.CompanyModel import CompanyModel
+from models import CompanyModel
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_smorest import abort
+
 
 class CompanyService():
     def getCompanyList(self):
@@ -23,7 +24,7 @@ class CompanyService():
             abort(500, message="An error occurred creating a new Company. Please contact our Support Channel")
 
         return company
-    
+
     def getCompanyById(self, id):
         return session.query(CompanyModel).filter(CompanyModel.id == id).one_or_none()
 
@@ -32,18 +33,18 @@ class CompanyService():
         session.delete(company)
         session.commit()
         return {"message": "Company deleted"}, 200
-    
+
     def updateCompany(self, company_data, id):
         newCompany = session.query(CompanyModel).filter(CompanyModel.id == id).one_or_none()
 
         if newCompany:
-            newCompany.address          = company_data["address"]
-            newCompany.billing          = company_data["billing"]
-            newCompany.companyName      = company_data["companyName"]
-            newCompany.phone            = company_data["phone"]
+            newCompany.address = company_data["address"]
+            newCompany.billing = company_data["billing"]
+            newCompany.companyName = company_data["companyName"]
+            newCompany.phone = company_data["phone"]
             newCompany.registrationDate = company_data["registrationDate"]
         else:
-            newCompany                  = CompanyModel(id, **company_data)
+            newCompany = CompanyModel(id, **company_data)
 
         session.add(newCompany)
         session.commit()

@@ -4,8 +4,15 @@ services:
     build: .
     depends_on:
       - db
+    networks:
+      - development
   db:
     image: postgres:10
     env_file: .env
-    expose:
-      - 5432
+    ports:
+      - 5455:5432
+    networks:
+      - development
+networks:
+  development:
+    driver: bridge

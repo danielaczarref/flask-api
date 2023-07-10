@@ -2,17 +2,18 @@ from flask.views import MethodView
 from flask_smorest import Blueprint
 
 from schemas import BankAccSchema, BankAccUpdateSchema
-from service.BankAccsService import BankAccsService
+from service import BankAccsService
 
 blp = Blueprint("Bank Accounts", "bank", description="Operations on bank accounts")
+
 
 @blp.route("/bank/<int:company_id>")
 class BankAccsList(MethodView):
     @blp.response(200, BankAccSchema(many=True))
     def get(self, company_id):
         return BankAccsService.getBankAccsList(self, company_id)
-    
-    
+
+
 @blp.route("/bank/<int:company_id>/bank-acc/<int:bankacc_id>")
 class GetBankAccount(MethodView):
     @blp.response(200, BankAccSchema)
@@ -26,7 +27,6 @@ class GetBankAccount(MethodView):
     @blp.response(201, BankAccSchema)
     def put(self, bankacc_data, company_id, bankacc_id):
         return BankAccsService.updateBankAcc(self, bankacc_data, company_id, id=bankacc_id)
-
 
 
 @blp.route("/bank")

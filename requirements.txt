@@ -4,3 +4,5 @@ python-dotenv
 marshmallow
 sqlalchemy
 psycopg2
+pytest
+pytest-flask
